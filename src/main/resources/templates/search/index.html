@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +8,25 @@
 <body>
     <h1>ホテル検索</h1>
     <br>
-    <form method="post">
+    <form th:action="@{/search-hotel}" method="post">
+        <!-- <p th:errors="*{price}">半角数字で入力してください</p> -->
         <input type="text" name="price">&nbsp;円以下
         <br>
         <button style="margin-top: 30px;">検索</button>
+        <br>
+        <div th:text="${session.nullError}"></div>
     </form>
+    <table th:each="hotel : ${session.hotels}" style="border: 1px solid; writing-mode: vertical-lr; border-collapse: collapse; margin-top: 30px;">
+        <tr  style="border: 1px solid;">
+            <th style="border: 1px solid; writing-mode: horizontal-tb; height: 25px; width: 200px;">ホテル名</th>
+            <th style="border: 1px solid; writing-mode: horizontal-tb; height: 25px; width: 200px;">最寄り駅</th>
+            <th style="border: 1px solid; writing-mode: horizontal-tb; height: 25px; width: 200px;">価格</th>
+        </tr>
+        <tr >
+            <td th:text="${hotel.hotelName}" style="border: 1px solid; writing-mode: horizontal-tb; height: 25px; width: 200px;"></td>
+            <td th:text="${hotel.nearestStation}" style="border: 1px solid; writing-mode: horizontal-tb; height: 25px; width: 200px;"></td>
+            <td th:text="${hotel.price}" style="border: 1px solid; writing-mode: horizontal-tb; height: 25px; width: 200px;"></td>
+        </tr>
+        
 </body>
 </html>
