@@ -8,7 +8,6 @@ public class ExIntermediateNumberSearchApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ExIntermediateNumberSearchApplication.class, args);
-		System.out.println("pushの確認");
 	}
 
 }
